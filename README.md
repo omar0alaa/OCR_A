@@ -18,17 +18,18 @@ This is a simple web application for extracting Arabic text from images using OC
    ```
    pip install -r requirements.txt
    ```
-3. Install Tesseract OCR and Arabic language data:
+3. Install Tesseract OCR and language data:
    - **Ubuntu/Linux:**
      ```
      sudo apt update
-     sudo apt install tesseract-ocr tesseract-ocr-ara
+     sudo apt install tesseract-ocr tesseract-ocr-ara tesseract-ocr-eng
      ```
    - **Windows:**
      1. Download the Tesseract installer from [UB Mannheim releases](https://github.com/UB-Mannheim/tesseract/wiki).
      2. Run the installer and follow the instructions.
      3. Make sure to add the Tesseract installation directory to your system PATH.
-     4. During installation, select Arabic language data or download `ara.traineddata` from [tessdata](https://github.com/tesseract-ocr/tessdata) and place it in the `tessdata` folder inside your Tesseract installation directory.
+     4. During installation, select both Arabic and English language data, or download `ara.traineddata` and `eng.traineddata` from [tessdata](https://github.com/tesseract-ocr/tessdata) and place them in the `tessdata` folder inside your Tesseract installation directory.
+     5. The app supports both Arabic and English OCR; make sure both language files are present for best results.
 
 ## Usage
 1. Start the Flask app:

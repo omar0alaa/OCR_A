@@ -27,6 +27,7 @@ def index():
             # Get Tesseract options from form
             psm = request.form.get('psm', '3')
             oem = request.form.get('oem', '3')
+            lang = request.form.get('lang', 'ara+en')
             # Preprocess image for better OCR accuracy
             img = cv2.imread(filepath, cv2.IMREAD_GRAYSCALE)
             img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
@@ -34,9 +35,9 @@ def index():
             # Save preprocessed image temporarily
             preprocessed_path = filepath + '_pre.png'
             cv2.imwrite(preprocessed_path, img)
-            # Set Tesseract to use Arabic language with user config
+            # Set Tesseract to use selected language(s) with user config
             custom_config = f'--oem {oem} --psm {psm}'
-            text = pytesseract.image_to_string(Image.open(preprocessed_path), lang='ara+en', config=custom_config)
+            text = pytesseract.image_to_string(Image.open(preprocessed_path), lang=lang, config=custom_config)
             os.remove(filepath)
             os.remove(preprocessed_path)
     return render_template('index.html', text=text)
