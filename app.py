@@ -27,7 +27,7 @@ def index():
             # Get Tesseract options from form
             psm = request.form.get('psm', '3')
             oem = request.form.get('oem', '3')
-            lang = request.form.get('lang', 'en+ara')
+            lang = request.form.get('lang', 'ara+eng')
             # Preprocess image for better OCR accuracy
             img = cv2.imread(filepath, cv2.IMREAD_GRAYSCALE)
             img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
