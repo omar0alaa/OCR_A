@@ -82,18 +82,18 @@ function updateText(lang) {
     // Update dropdown options for PSM
     const psmSelect = document.getElementById('psm');
     if (psmSelect) {
-        psmSelect.options[0].text = lang === 'en' ? '3 - Auto (default)' : '3 - تلقائي (افتراضي)';
-        psmSelect.options[1].text = lang === 'en' ? '6 - Single line' : '6 - سطر واحد';
-        psmSelect.options[2].text = lang === 'en' ? '4 - Single column' : '4 - عمود نص واحد';
-        psmSelect.options[3].text = lang === 'en' ? '11 - Sparse text' : '11 - سطر نص واحد غير منظم';
-        psmSelect.options[4].text = lang === 'en' ? '12 - Single word' : '12 - كلمة واحدة';
+        psmSelect.options[0].text = lang === 'en' ? 'Auto (default)' : 'تلقائي (افتراضي)';
+        psmSelect.options[1].text = lang === 'en' ? 'Single line' : 'سطر واحد';
+        psmSelect.options[2].text = lang === 'en' ? 'Single column' : 'عمود نص واحد';
+        psmSelect.options[3].text = lang === 'en' ? 'Sparse text' : 'سطر نص واحد غير منظم';
+        psmSelect.options[4].text = lang === 'en' ? 'Single word' : 'كلمة واحدة';
     }
     // Update dropdown options for OEM
     const oemSelect = document.getElementById('oem');
     if (oemSelect) {
-        oemSelect.options[0].text = lang === 'en' ? '3 - Default (LSTM + Legacy)' : '3 - الافتراضي (LSTM + Legacy)';
-        oemSelect.options[1].text = lang === 'en' ? '1 - LSTM only' : '1 - LSTM فقط';
-        oemSelect.options[2].text = lang === 'en' ? '0 - Legacy only' : '0 - Legacy فقط';
+        oemSelect.options[0].text = lang === 'en' ? 'Default (LSTM + Legacy)' : 'الافتراضي (LSTM + Legacy)';
+        oemSelect.options[1].text = lang === 'en' ? 'LSTM only' : 'LSTM فقط';
+        oemSelect.options[2].text = lang === 'en' ? 'Legacy only' : 'Legacy فقط';
     }
 }
 window.onload = function() {
