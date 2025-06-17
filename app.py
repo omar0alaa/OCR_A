@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_file
 import pytesseract
 from PIL import Image
 import os
@@ -26,6 +26,15 @@ def index():
             text = pytesseract.image_to_string(Image.open(filepath), lang='ara')
             os.remove(filepath)
     return render_template('index.html', text=text)
+
+@app.route('/download', methods=['POST'])
+def download():
+    text = request.form.get('text')
+    if not text:
+        return redirect(url_for('index'))
+    with open('extracted.txt', 'w', encoding='utf-8') as f:
+        f.write(text)
+    return send_file('extracted.txt', as_attachment=True, download_name='extracted.txt', mimetype='text/plain')
 
 if __name__ == '__main__':
     # For production, use Waitress WSGI server
