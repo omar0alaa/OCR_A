@@ -1,73 +1,128 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
 body {
     font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
     min-height: 100vh;
-    margin: 0;
+    background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background 0.3s, color 0.3s;
 }
-.container {
-    background: #fff;
-    padding: 40px 30px 30px 30px;
+.glass-container {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 18px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     max-width: 480px;
     width: 100%;
-    text-align: center;
+    padding: 40px 30px 30px 30px;
+    margin: 40px auto;
+    position: relative;
+}
+.glass-frame {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 24px;
+    border: 2.5px solid rgba(120, 120, 255, 0.25);
+    pointer-events: none;
+    z-index: 1;
+    box-shadow: 0 0 32px 0 rgba(120, 120, 255, 0.10);
 }
 h2 {
     color: #4b2994;
     margin-bottom: 25px;
     font-weight: 700;
 }
-form {
-    margin-bottom: 20px;
-}
-input[type=file] {
-    margin: 18px 0 10px 0;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background: #f7f7f7;
-    width: 100%;
-}
-button {
-    padding: 12px 36px;
-    background: linear-gradient(90deg, #8ec5fc 0%, #e0c3fc 100%);
-    color: #fff;
+.theme-toggle {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    background: none;
     border: none;
-    border-radius: 6px;
-    font-size: 1.1em;
-    font-weight: 700;
+    font-size: 1.5em;
     cursor: pointer;
-    transition: background 0.2s;
-    margin-top: 10px;
-}
-button:hover {
-    background: linear-gradient(90deg, #e0c3fc 0%, #8ec5fc 100%);
-}
-.result {
-    margin-top: 30px;
-    text-align: right;
-}
-.result h3 {
     color: #4b2994;
-    margin-bottom: 10px;
+    z-index: 10;
+    transition: color 0.3s;
 }
-textarea {
-    width: 100%;
-    height: 160px;
-    margin-top: 10px;
+.theme-frame {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2.5px solid rgba(120, 120, 255, 0.25);
+    pointer-events: none;
+    z-index: 11;
+    box-shadow: 0 0 16px 0 rgba(120, 120, 255, 0.10);
+    background: rgba(255,255,255,0.18);
+    transition: border 0.3s, background 0.3s;
+}
+.result textarea {
+    font-size: 1.2em;
+    line-height: 2;
+    letter-spacing: 0.5px;
     direction: rtl;
-    font-size: 1.1em;
+    background: rgba(255,255,255,0.7);
     border-radius: 8px;
     border: 1px solid #ddd;
-    padding: 12px;
-    background: #f7f7f7;
+    padding: 16px;
+    color: #222;
     resize: vertical;
 }
+.btn-custom {
+    background: linear-gradient(90deg, #8ec5fc 0%, #e0c3fc 100%);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+.btn-custom:hover {
+    background: linear-gradient(90deg, #e0c3fc 0%, #8ec5fc 100%);
+    color: #fff;
+}
+[data-theme="dark"] body {
+    background: linear-gradient(120deg, #232526 0%, #414345 100%);
+    color: #f1f1f1;
+}
+[data-theme="dark"] .glass-container {
+    background: rgba(35, 37, 38, 0.7);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #f1f1f1;
+}
+[data-theme="dark"] .glass-frame {
+    border: 2.5px solid rgba(179, 157, 219, 0.25);
+    box-shadow: 0 0 32px 0 rgba(179, 157, 219, 0.10);
+}
+[data-theme="dark"] h2, [data-theme="dark"] .theme-toggle {
+    color: #b39ddb;
+}
+[data-theme="dark"] .result textarea {
+    background: rgba(44,47,52,0.8);
+    color: #f1f1f1;
+    border: 1px solid #444;
+}
+[data-theme="dark"] .btn-custom {
+    background: linear-gradient(90deg, #8e54e9 0%, #4776e6 100%);
+    color: #fff;
+}
+[data-theme="dark"] .btn-custom:hover {
+    background: linear-gradient(90deg, #4776e6 0%, #8e54e9 100%);
+    color: #fff;
+}
+[data-theme="dark"] .theme-frame {
+    border: 2.5px solid rgba(179, 157, 219, 0.25);
+    box-shadow: 0 0 16px 0 rgba(179, 157, 219, 0.10);
+    background: rgba(44,47,52,0.18);
+}
 @media (max-width: 600px) {
-    .container { padding: 20px 5px; }
+    .glass-container { padding: 20px 5px; }
+    .theme-toggle { left: 8px; top: 8px; }
 }
