@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import pytesseract
 from PIL import Image
 import os
+from waitress import serve
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads/'
@@ -27,4 +28,5 @@ def index():
     return render_template('index.html', text=text)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=11001)
+    # For production, use Waitress WSGI server
+    serve(app, host='0.0.0.0', port=11001)
