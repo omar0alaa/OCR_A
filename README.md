@@ -1,4 +1,4 @@
-# Arabic OCR Web App
+# Arabic/English OCR Web App
 
 This is a simple web application for extracting Arabic text from images using OCR (Optical Character Recognition).
 
