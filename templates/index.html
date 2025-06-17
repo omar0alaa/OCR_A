@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="html-root">
 <head>
     <meta charset="UTF-8">
     <title>Arabic OCR - التعرف الضوئي على الحروف العربية والإنجليزية</title>
@@ -10,16 +10,16 @@
     <script src="{{ url_for('static', filename='theme.js') }}"></script>
 </head>
 <body>
-    <span class="glass-frame theme-frame"></span>
     <button class="theme-toggle" onclick="toggleTheme()" title="تبديل الوضع الليلي/النهاري"><span id="theme-icon">🌙</span></button>
+    <button class="lang-toggle" onclick="toggleLang()" title="تبديل اللغة"><span id="lang-icon">🇸🇦</span></button>
     <div class="glass-container shadow-lg">
-        <h2 class="mb-4">موقع التعرف الضوئي على الحروف العربية والإنجليزية</h2>
+        <h2 class="mb-4" id="main-title">موقع التعرف الضوئي على الحروف العربية والإنجليزية</h2>
         <form method="post" enctype="multipart/form-data" class="mb-3">
             <div class="mb-3">
                 <input type="file" class="form-control" name="image" accept="image/*" required>
             </div>
             <div class="mb-3 text-end">
-                <label for="lang" class="form-label">اللغة Language:</label>
+                <label for="lang" class="form-label" id="lang-label">اللغة Language:</label>
                 <select class="form-select" name="lang" id="lang">
                     <option value="ara+eng">عربي + إنجليزي (افتراضي)</option>
                     <option value="ara">عربي فقط</option>
@@ -27,7 +27,7 @@
                 </select>
             </div>
             <div class="mb-3 text-end">
-                <label for="psm" class="form-label">وضع تقسيم الصفحة (PSM):</label>
+                <label for="psm" class="form-label" id="psm-label">وضع تقسيم الصفحة (PSM):</label>
                 <select class="form-select" name="psm" id="psm">
                     <option value="3">3 - تلقائي (افتراضي)</option>
                     <option value="6">6 - سطر واحد</option>
@@ -37,22 +37,22 @@
                 </select>
             </div>
             <div class="mb-3 text-end">
-                <label for="oem" class="form-label">محرك التعرف (OEM):</label>
+                <label for="oem" class="form-label" id="oem-label">محرك التعرف (OEM):</label>
                 <select class="form-select" name="oem" id="oem">
                     <option value="3">3 - الافتراضي (LSTM + Legacy)</option>
                     <option value="1">1 - LSTM فقط</option>
                     <option value="0">0 - Legacy فقط</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-custom w-100">رفع الصورة وتحليل النص</button>
+            <button type="submit" class="btn btn-custom w-100" id="upload-btn">رفع الصورة وتحليل النص</button>
         </form>
         {% if text %}
         <div class="result mt-4">
-            <h3 class="mb-2" style="color:#4b2994;">النص المستخرج:</h3>
+            <h3 class="mb-2" style="color:#4b2994;" id="result-title">النص المستخرج:</h3>
             <textarea readonly class="form-control mb-3" rows="7">{{ text }}</textarea>
             <form method="post" action="{{ url_for('download') }}">
                 <input type="hidden" name="text" value="{{ text|e }}">
-                <button type="submit" class="btn btn-custom w-100">تحميل النص كملف</button>
+                <button type="submit" class="btn btn-custom w-100" id="download-btn">تحميل النص كملف</button>
             </form>
         </div>
         {% endif %}

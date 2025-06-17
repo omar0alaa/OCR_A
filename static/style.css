@@ -50,6 +50,20 @@ h2 {
     z-index: 10;
     transition: color 0.3s;
 }
+.lang-toggle {
+    position: absolute;
+    top: 24px;
+    left: 74px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #4b2994;
+    z-index: 10;
+    transition: color 0.3s;
+    border-radius: 50%;
+    padding: 0 8px;
+}
 .theme-frame {
     position: absolute;
     top: 18px;
@@ -125,4 +139,5 @@ h2 {
 @media (max-width: 600px) {
     .glass-container { padding: 20px 5px; }
     .theme-toggle { left: 8px; top: 8px; }
+    .lang-toggle { left: 54px; top: 8px; }
 }
