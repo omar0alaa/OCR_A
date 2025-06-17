@@ -1,3 +1,5 @@
 flask
 pytesseract
 Pillow
+opencv-python
+waitress
