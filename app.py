@@ -36,7 +36,7 @@ def index():
             cv2.imwrite(preprocessed_path, img)
             # Set Tesseract to use Arabic language with user config
             custom_config = f'--oem {oem} --psm {psm}'
-            text = pytesseract.image_to_string(Image.open(preprocessed_path), lang='ara', config=custom_config)
+            text = pytesseract.image_to_string(Image.open(preprocessed_path), lang='ara+en', config=custom_config)
             os.remove(filepath)
             os.remove(preprocessed_path)
     return render_template('index.html', text=text)
