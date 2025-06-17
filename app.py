@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, send_file
 import pytesseract
 from PIL import Image
 import os
+import cv2
+import numpy as np
 from waitress import serve
 
 app = Flask(__name__)
@@ -22,9 +24,21 @@ def index():
         if file:
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
             file.save(filepath)
-            # Set Tesseract to use Arabic language
-            text = pytesseract.image_to_string(Image.open(filepath), lang='ara')
+            # Get Tesseract options from form
+            psm = request.form.get('psm', '3')
+            oem = request.form.get('oem', '3')
+            # Preprocess image for better OCR accuracy
+            img = cv2.imread(filepath, cv2.IMREAD_GRAYSCALE)
+            img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+            img = cv2.medianBlur(img, 3)
+            # Save preprocessed image temporarily
+            preprocessed_path = filepath + '_pre.png'
+            cv2.imwrite(preprocessed_path, img)
+            # Set Tesseract to use Arabic language with user config
+            custom_config = f'--oem {oem} --psm {psm}'
+            text = pytesseract.image_to_string(Image.open(preprocessed_path), lang='ara', config=custom_config)
             os.remove(filepath)
+            os.remove(preprocessed_path)
     return render_template('index.html', text=text)
 
 @app.route('/download', methods=['POST'])

@@ -18,6 +18,24 @@
             <div class="mb-3">
                 <input type="file" class="form-control" name="image" accept="image/*" required>
             </div>
+            <div class="mb-3 text-end">
+                <label for="psm" class="form-label">وضع تقسيم الصفحة (PSM):</label>
+                <select class="form-select" name="psm" id="psm">
+                    <option value="3">3 - تلقائي (افتراضي)</option>
+                    <option value="6">6 - سطر واحد</option>
+                    <option value="4">4 - عمود نص واحد</option>
+                    <option value="11">11 - سطر نص واحد غير منظم</option>
+                    <option value="12">12 - كلمة واحدة</option>
+                </select>
+            </div>
+            <div class="mb-3 text-end">
+                <label for="oem" class="form-label">محرك التعرف (OEM):</label>
+                <select class="form-select" name="oem" id="oem">
+                    <option value="3">3 - الافتراضي (LSTM + Legacy)</option>
+                    <option value="1">1 - LSTM فقط</option>
+                    <option value="0">0 - Legacy فقط</option>
+                </select>
+            </div>
             <button type="submit" class="btn btn-custom w-100">رفع الصورة وتحليل النص</button>
         </form>
         {% if text %}
